@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0pttdscckvy1"]
+
+[ext_resource type="Texture2D" uid="uid://t1kem57oam07" path="res://Player/主角-Sheet.png" id="1_l8h54"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ntmi"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btcbx"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwnis"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k53q1"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhl08"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtle1"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od3ui"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00tjw"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3vf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ntmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btcbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwnis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k53q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhl08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtle1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od3ui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00tjw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8h54"]
+radius = 25.02
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x3vf3")
+frame_progress = 0.398181
+offset = Vector2(0.5, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+shape = SubResource("CircleShape2D_l8h54")
+debug_color = Color(0, 0.6, 0.701961, 0.196078)
