@@ -1,0 +1,61 @@
+extends Node
+
+signal screen_shake(amount: float)
+signal screen_flash(amount: float, colour: Color)
+signal screen_filter(amount: float, colour: Color)
+
+@onready var colour_rect: ColorRect = $CanvasLayer/ColorRect
+
+var transport_cool_down: bool = false
+
+func _ready() -> void:
+	transport_cool_down = false
+	colour_rect.color.a = 0
+
+func shake_camera(amount: float): # 震屏
+	screen_shake.emit(amount)
+
+func flash(amount: float, colour: Color): # 闪屏
+	screen_flash.emit(amount, colour)
+
+func filter(amount: float, colour: Color): # 闪屏
+	screen_filter.emit(amount, colour)
+
+func frame_freeze(timescale, duration): # 静止帧
+	Engine.time_scale = timescale
+	await get_tree().create_timer(duration, true, false, true).timeout
+	Engine.time_scale = 1.0
+
+func change_pos(body: CharacterBody2D, entry_point: String):
+	transport_cool_down = true
+	var tree = get_tree()
+	var tween = create_tween()
+	tween.tween_property(colour_rect, "color:a", 1, 0.3)
+	await tween.finished
+	await get_tree().create_timer(0.3).timeout
+	
+	for n in tree.get_nodes_in_group("entry_points"):
+		if n.name == entry_point:
+			body.global_position = n.global_position
+	
+	tween = create_tween()
+	tween.tween_property(colour_rect, "color:a", 0, 0.3)
+	
+	await get_tree().create_timer(0.3).timeout # 传送冷却为切换位置0.3秒后
+	transport_cool_down = false
+
+func change_scene(scene_path: String):
+	transport_cool_down = true
+	var tree = get_tree()
+	var tween = create_tween()
+	tween.tween_property(colour_rect, "color:a", 1.05, 0.3) # 离开场景2.5秒渐变
+	await tween.finished
+	tree.change_scene_to_file(scene_path)
+	await tree.process_frame
+	await get_tree().create_timer(0.3).timeout
+	
+	tween = create_tween()
+	tween.tween_property(colour_rect, "color:a", 0, 2.5) # 进入场景2.5秒渐变
+	
+	await get_tree().create_timer(2.5).timeout # 传送冷却为进入场景2.5秒后
+	transport_cool_down = false

@@ -15,6 +15,10 @@ run/main_scene="uid://cx07x28pjhlw1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://Game/game.tscn"
+
 [display]
 
 window/size/viewport_width=1420
@@ -30,3 +34,4 @@ window/stretch/aspect="ignore"
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+viewport/hdr_2d=true

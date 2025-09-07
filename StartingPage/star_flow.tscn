@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://es3upnweh8n8"]
+
+[ext_resource type="Texture2D" uid="uid://dousqjpfxx5i0" path="res://StartingPage/StarFlow.png" id="1_3ybqk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7yji"]
+particles_animation = true
+particles_anim_h_frames = 30
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_3ybqk"]
+offsets = PackedFloat32Array(0, 0.0681818, 0.922727, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w7yji"]
+gradient = SubResource("Gradient_3ybqk")
+
+[sub_resource type="Curve" id="Curve_clpct"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.891853), 0.0, 0.0, 0, 0, Vector2(0.525547, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.880666), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_eijam"]
+curve = SubResource("Curve_clpct")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rp0s5"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(1000, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(-0.5, 1, 0)
+spread = 0.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_eijam")
+color_ramp = SubResource("GradientTexture1D_w7yji")
+anim_offset_max = 1.0
+
+[node name="StarFlow" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_w7yji")
+amount = 20
+texture = ExtResource("1_3ybqk")
+lifetime = 4.5
+process_material = SubResource("ParticleProcessMaterial_rp0s5")

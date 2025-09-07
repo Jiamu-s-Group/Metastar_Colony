@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyngqjg8iibx3"]
+
+[ext_resource type="Script" uid="uid://bvac86qdcvl3k" path="res://Game/game.gd" id="1_bk3v5"]
+
+[sub_resource type="Environment" id="Environment_4oc8p"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 2.0
+glow_hdr_scale = 0.0
+adjustment_enabled = true
+
+[node name="Game" type="Node"]
+script = ExtResource("1_bk3v5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4oc8p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1420.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)

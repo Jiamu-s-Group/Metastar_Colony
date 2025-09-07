@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4fwvc1ey5s7l"]
+
+[ext_resource type="FontFile" uid="uid://bimm6dhdgg15i" path="res://Game/PixelFont.ttf" id="1_tepun"]
+[ext_resource type="PackedScene" uid="uid://es3upnweh8n8" path="res://StartingPage/star_flow.tscn" id="3_ojqnc"]
+
+[node name="PositionChoosingPage" type="Node2D"]
+
+[node name="CanvasLayerBack" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerBack"]
+offset_right = 1420.0
+offset_bottom = 800.0
+color = Color(0.054902, 0.101961, 0.168627, 1)
+
+[node name="Label" type="Label" parent="CanvasLayerBack"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 57.0
+offset_right = -656.0
+offset_bottom = 154.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.376471, 0.611765, 0.384314, 1)
+theme_override_colors/font_shadow_color = Color(0.0865023, 0.33163, 0.343139, 1)
+theme_override_fonts/font = ExtResource("1_tepun")
+theme_override_font_sizes/font_size = 75
+text = "Select landing location"
+horizontal_alignment = 1
+
+[node name="JiamuLabel" type="Label" parent="CanvasLayerBack"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 23.0
+offset_top = 742.0
+offset_right = -1211.0
+offset_bottom = 782.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.0862745, 0.333333, 0.345098, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_tepun")
+theme_override_font_sizes/font_size = 40
+text = "Safarirafas"
+horizontal_alignment = 1
+
+[node name="StarFlow" parent="." instance=ExtResource("3_ojqnc")]
+modulate = Color(3, 3, 3, 1)
+amount = 5

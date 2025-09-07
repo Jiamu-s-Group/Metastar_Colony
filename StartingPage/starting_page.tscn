@@ -1,7 +1,207 @@
-[gd_scene format=3 uid="uid://cx07x28pjhlw1"]
+[gd_scene load_steps=18 format=3 uid="uid://cx07x28pjhlw1"]
+
+[ext_resource type="PackedScene" uid="uid://es3upnweh8n8" path="res://StartingPage/star_flow.tscn" id="1_2d31e"]
+[ext_resource type="Texture2D" uid="uid://d2vf8q4hrtutj" path="res://StartingPage/starting_page_planet.png" id="1_f8iag"]
+[ext_resource type="Script" uid="uid://c7xjmqs62txh2" path="res://StartingPage/starting_page.gd" id="1_ge4ug"]
+[ext_resource type="FontFile" uid="uid://bimm6dhdgg15i" path="res://Game/PixelFont.ttf" id="2_2d31e"]
+[ext_resource type="Texture2D" uid="uid://c32goyce1ihix" path="res://StartingPage/WhiteButton.png" id="3_5dl2l"]
+[ext_resource type="Texture2D" uid="uid://t1kem57oam07" path="res://Player/主角-Sheet.png" id="5_xmov7"]
+[ext_resource type="Script" uid="uid://das5bneahxwcj" path="res://StartingPage/starting_page_player_animation.gd" id="6_3ltj2"]
+[ext_resource type="AudioStream" uid="uid://cli0dx272gs7k" path="res://MusicList/EonseedSpace.ogg" id="8_tcl5m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ltj2"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge4ug"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcl5m"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xla3e"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04m7d"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os458"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnena"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wykt"]
+atlas = ExtResource("5_xmov7")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_42h1h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ltj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge4ug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcl5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xla3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04m7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os458")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnena")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wykt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="StartingPage" type="Node2D"]
+script = ExtResource("1_ge4ug")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 358.0
-offset_bottom = 251.0
+[node name="CanvasLayerFront" type="CanvasLayer" parent="."]
+
+[node name="StartButton" type="Button" parent="CanvasLayerFront"]
+offset_left = 321.0
+offset_top = 323.0
+offset_right = 660.0
+offset_bottom = 431.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("2_2d31e")
+theme_override_font_sizes/font_size = 100
+button_mask = 0
+text = "PLAY
+"
+icon = ExtResource("3_5dl2l")
+icon_alignment = 1
+expand_icon = true
+
+[node name="OptionButton" type="Button" parent="CanvasLayerFront"]
+offset_left = 321.0
+offset_top = 443.0
+offset_right = 660.0
+offset_bottom = 551.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("2_2d31e")
+theme_override_font_sizes/font_size = 100
+button_mask = 0
+text = "Option
+"
+icon = ExtResource("3_5dl2l")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ExitButton" type="Button" parent="CanvasLayerFront"]
+offset_left = 321.0
+offset_top = 563.0
+offset_right = 660.0
+offset_bottom = 671.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("2_2d31e")
+theme_override_font_sizes/font_size = 100
+button_mask = 0
+text = "EXIT
+"
+icon = ExtResource("3_5dl2l")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CanvasLayerBack" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerBack"]
+offset_right = 1420.0
+offset_bottom = 800.0
+color = Color(0.054902, 0.101961, 0.168627, 1)
+
+[node name="Label" type="Label" parent="CanvasLayerBack"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 72.0
+offset_right = 1.0
+offset_bottom = 247.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.376471, 0.611765, 0.384314, 1)
+theme_override_colors/font_shadow_color = Color(0.0865023, 0.33163, 0.343139, 1)
+theme_override_fonts/font = ExtResource("2_2d31e")
+theme_override_font_sizes/font_size = 175
+text = "Eonseed"
+horizontal_alignment = 1
+
+[node name="JiamuLabel" type="Label" parent="CanvasLayerBack"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 23.0
+offset_top = 742.0
+offset_right = -1211.0
+offset_bottom = 782.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.0862745, 0.333333, 0.345098, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("2_2d31e")
+theme_override_font_sizes/font_size = 40
+text = "Safarirafas"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayerBack"]
+modulate = Color(1, 1, 1, 0.08)
+position = Vector2(710, 400)
+texture = ExtResource("1_f8iag")
+
+[node name="StarFlow" parent="." instance=ExtResource("1_2d31e")]
+modulate = Color(3, 3, 3, 1)
+amount = 30
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(983, 512)
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_42h1h")
+autoplay = "default"
+script = ExtResource("6_3ltj2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tcl5m")
+volume_db = 7.5
+
+[connection signal="pressed" from="CanvasLayerFront/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayerFront/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="CanvasLayerFront/ExitButton" to="." method="_on_exit_button_pressed"]
