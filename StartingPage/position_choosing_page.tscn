@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4fwvc1ey5s7l"]
+[gd_scene load_steps=10 format=3 uid="uid://b4fwvc1ey5s7l"]
 
 [ext_resource type="FontFile" uid="uid://bimm6dhdgg15i" path="res://Game/PixelFont.ttf" id="1_tepun"]
+[ext_resource type="Script" uid="uid://bb6q4d7lmp8e6" path="res://StartingPage/position_choosing_page.gd" id="1_vxkf4"]
 [ext_resource type="PackedScene" uid="uid://es3upnweh8n8" path="res://StartingPage/star_flow.tscn" id="3_ojqnc"]
+[ext_resource type="Texture2D" uid="uid://bf71t8jvca5dt" path="res://StartingPage/Planet_Ocean.png" id="3_osqwy"]
+[ext_resource type="Texture2D" uid="uid://deobxg3ffm0oc" path="res://StartingPage/Planet_Rock.png" id="4_blj6x"]
+[ext_resource type="Texture2D" uid="uid://d3xr1qkisa0vj" path="res://StartingPage/Planet_Ice.png" id="5_vxkf4"]
+[ext_resource type="Texture2D" uid="uid://chmv3ogis136x" path="res://StartingPage/Planet_Lava.png" id="6_bmaye"]
+[ext_resource type="AudioStream" uid="uid://8njkno6htsr" path="res://MusicList/Cavern.ogg" id="7_blj6x"]
+[ext_resource type="AudioStream" uid="uid://cesw7oph5ced6" path="res://StartingPage/typing.mp3" id="9_bmaye"]
 
 [node name="PositionChoosingPage" type="Node2D"]
+script = ExtResource("1_vxkf4")
 
 [node name="CanvasLayerBack" type="CanvasLayer" parent="."]
 layer = -10
@@ -11,6 +19,7 @@ layer = -10
 [node name="ColorRect" type="ColorRect" parent="CanvasLayerBack"]
 offset_right = 1420.0
 offset_bottom = 800.0
+mouse_filter = 2
 color = Color(0.054902, 0.101961, 0.168627, 1)
 
 [node name="Label" type="Label" parent="CanvasLayerBack"]
@@ -46,6 +55,85 @@ theme_override_font_sizes/font_size = 40
 text = "Safarirafas"
 horizontal_alignment = 1
 
+[node name="DescriptionLabel" type="Label" parent="CanvasLayerBack"]
+offset_left = 46.0
+offset_top = 314.0
+offset_right = 642.0
+offset_bottom = 640.0
+theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
+theme_override_colors/font_outline_color = Color(0.497474, 0.497474, 0.497474, 1)
+theme_override_fonts/font = ExtResource("1_tepun")
+theme_override_font_sizes/font_size = 35
+text = "Description."
+
+[node name="StatusLabel" type="Label" parent="CanvasLayerBack"]
+offset_left = 46.0
+offset_top = 579.0
+offset_right = 643.0
+offset_bottom = 735.0
+theme_override_colors/font_color = Color(0.864675, 0.864675, 0.864675, 1)
+theme_override_colors/font_outline_color = Color(0.497474, 0.497474, 0.497474, 1)
+theme_override_fonts/font = ExtResource("1_tepun")
+theme_override_font_sizes/font_size = 35
+text = "Description."
+
 [node name="StarFlow" parent="." instance=ExtResource("3_ojqnc")]
 modulate = Color(3, 3, 3, 1)
 amount = 5
+
+[node name="Planet" type="Node2D" parent="."]
+position = Vector2(950, 350)
+scale = Vector2(6, 6)
+
+[node name="Area2D_Rocklands" type="Area2D" parent="Planet"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planet/Area2D_Rocklands"]
+modulate = Color(0, 1, 0, 0.5)
+polygon = PackedVector2Array(29.3333, -2.5, 18.6667, -5.83334, 6.16666, -12.8333, -0.333344, -19.1667, -14.3333, -21, -22.5, -28, -33.8333, -28, -40.1667, -20.1667, -45.6667, -7.33334, -47.6667, 2.16666, -47.6667, 14.6667, -45.3333, 24.1667, -42.3333, 32.3333, -37.6667, 39.8333, -34.6667, 44, -23, 36, -20.1667, 35.6667, -16, 32, -7, 30.1667, -1.5, 28, 7.83333, 32.6667, 12.8333, 33, 15.3333, 31, 23, 31, 31, 27.8333, 30.1667, 22, 17, 21, 11.8333, 19, 3, 19, 2.16666, 16.6667, 4.83333, 14, 12, 14, 18.1667, 7, 27, 6, 29.8333, 3.83333)
+
+[node name="Area2D_Frostcap" type="Area2D" parent="Planet"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planet/Area2D_Frostcap"]
+modulate = Color(0, 0, 1, 0.5)
+polygon = PackedVector2Array(-33, -29.1667, -29.8333, -29.1667, -25.1667, -31.8333, -24.3333, -31, -16.3333, -37.1667, -13.1667, -34.1667, -12.1667, -35, -7.5, -30.1667, -3.33334, -36.1667, 0.666656, -33, 2.66666, -34, 6.5, -30, 10, -35, 11.6667, -34.1667, 12.8333, -35, 18.3333, -30.1667, 20.8333, -33.5, 21.6667, -37.1667, 24.1667, -32.1667, 26.5, -30.1667, 28.1667, -36.8333, 30.1667, -36.8333, 34, -31.3333, 35.8333, -30.1667, 36.3333, -35, 39.1667, -34, 41, -34, 47, -28.1667, 50.5, -28.1667, 42.8333, -36, 32, -42, 23.6667, -45.8333, 13.3333, -48, 1, -48, -11, -44.8333, -21, -39.5, -27, -35.5, -33, -29.8333)
+
+[node name="Area2D_Pyroforge" type="Area2D" parent="Planet"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planet/Area2D_Pyroforge"]
+modulate = Color(1, 0, 0, 0.5)
+polygon = PackedVector2Array(41.1667, 30.8333, 46, 31, 49.3333, 28, 52, 28, 53.8333, 24.6667, 54.1667, 20.6667, 56, 19.6667, 56, 17, 53.6667, 15.5, 56.8333, 13.6667, 57.1667, 11, 59.8333, 9.83334, 59.8333, 4.83333, 57.6667, 4, 54.6667, 4.83333, 52, 3.83333, 52, 2.16666, 50, 1, 49.8333, -1, 48, -1, 45, 1.16666, 45, 4.83333, 43, 7, 41, 6.83334, 38.6667, 5, 37, 5, 37, 9, 36, 11.8333, 33, 13, 33, 15.8333, 38, 18, 39, 20.5, 38, 21.8333, 38, 25, 40, 26, 40.3333, 29)
+
+[node name="Planet_Ocean" type="Sprite2D" parent="Planet"]
+texture = ExtResource("3_osqwy")
+
+[node name="Planet_Rocklands" type="Sprite2D" parent="Planet"]
+texture = ExtResource("4_blj6x")
+
+[node name="Planet_Frostcap" type="Sprite2D" parent="Planet"]
+texture = ExtResource("5_vxkf4")
+
+[node name="Planet_Pyroforge" type="Sprite2D" parent="Planet"]
+texture = ExtResource("6_bmaye")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_blj6x")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer_Typing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_bmaye")
+volume_db = -20.0
+max_polyphony = 2
+
+[node name="TypingTimer" type="Timer" parent="."]
+wait_time = 0.06
+
+[node name="DescriptionTypingTimer" type="Timer" parent="."]
+wait_time = 0.033
+
+[node name="StatusTypingTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="input_event" from="Planet/Area2D_Rocklands" to="." method="_on_area_2d_rocklands_input_event"]
+[connection signal="timeout" from="TypingTimer" to="." method="_on_typing_timer_timeout"]
+[connection signal="timeout" from="DescriptionTypingTimer" to="." method="_on_description_typing_timer_timeout"]
+[connection signal="timeout" from="StatusTypingTimer" to="." method="_on_status_typing_timer_timeout"]
