@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4fwvc1ey5s7l"]
+[gd_scene load_steps=12 format=3 uid="uid://b4fwvc1ey5s7l"]
 
 [ext_resource type="FontFile" uid="uid://bimm6dhdgg15i" path="res://Game/PixelFont.ttf" id="1_tepun"]
 [ext_resource type="Script" uid="uid://bb6q4d7lmp8e6" path="res://StartingPage/position_choosing_page.gd" id="1_vxkf4"]
@@ -9,6 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://chmv3ogis136x" path="res://StartingPage/Planet_Lava.png" id="6_bmaye"]
 [ext_resource type="AudioStream" uid="uid://8njkno6htsr" path="res://MusicList/Cavern.ogg" id="7_blj6x"]
 [ext_resource type="AudioStream" uid="uid://cesw7oph5ced6" path="res://StartingPage/typing.mp3" id="9_bmaye"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7d2p"]
+bg_color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmaye"]
+bg_color = Color(0.2, 1, 0.2, 1)
 
 [node name="PositionChoosingPage" type="Node2D"]
 script = ExtResource("1_vxkf4")
@@ -77,6 +83,14 @@ theme_override_fonts/font = ExtResource("1_tepun")
 theme_override_font_sizes/font_size = 35
 text = "Description."
 
+[node name="AccessProgressBar" type="ProgressBar" parent="CanvasLayerBack"]
+offset_left = 47.0
+offset_top = 624.0
+offset_right = 587.0
+offset_bottom = 651.0
+theme_override_styles/background = SubResource("StyleBoxFlat_a7d2p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bmaye")
+
 [node name="StarFlow" parent="." instance=ExtResource("3_ojqnc")]
 modulate = Color(3, 3, 3, 1)
 amount = 5
@@ -133,7 +147,11 @@ wait_time = 0.033
 [node name="StatusTypingTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="AccessTimer" type="Timer" parent="."]
+wait_time = 0.05
+
 [connection signal="input_event" from="Planet/Area2D_Rocklands" to="." method="_on_area_2d_rocklands_input_event"]
 [connection signal="timeout" from="TypingTimer" to="." method="_on_typing_timer_timeout"]
 [connection signal="timeout" from="DescriptionTypingTimer" to="." method="_on_description_typing_timer_timeout"]
 [connection signal="timeout" from="StatusTypingTimer" to="." method="_on_status_typing_timer_timeout"]
+[connection signal="timeout" from="AccessTimer" to="." method="_on_access_timer_timeout"]

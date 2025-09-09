@@ -1,6 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0pttdscckvy1"]
+[gd_scene load_steps=26 format=3 uid="uid://d0pttdscckvy1"]
 
+[ext_resource type="Script" uid="uid://bakg0ufolllc8" path="res://Player/player.gd" id="1_fhl08"]
 [ext_resource type="Texture2D" uid="uid://t1kem57oam07" path="res://Player/主角-Sheet.png" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://5bqm6yiieywy" path="res://Player/StateManager.gd" id="2_btcbx"]
+[ext_resource type="Script" uid="uid://c6ihit3rpracp" path="res://Player/test(0).gd" id="3_gwnis"]
+[ext_resource type="Script" uid="uid://s2vvuws3j3iq" path="res://Player/move(1).gd" id="4_k53q1"]
+[ext_resource type="Script" uid="uid://c3qwrl3fvtwro" path="res://Player/pickup(2).gd" id="5_fhl08"]
+
+[sub_resource type="Gradient" id="Gradient_fhl08"]
+offsets = PackedFloat32Array(0, 0.238806, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.350746, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vtle1"]
+gradient = SubResource("Gradient_fhl08")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ntmi"]
 atlas = ExtResource("1_l8h54")
@@ -67,16 +82,87 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8h54"]
-radius = 25.02
+radius = 9.0
+
+[sub_resource type="Gradient" id="Gradient_vtle1"]
+offsets = PackedFloat32Array(0, 0.256219, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.206468, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_od3ui"]
+gradient = SubResource("Gradient_vtle1")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_00tjw"]
+offsets = PackedFloat32Array(0, 0.229299, 0.484076, 0.77707, 1)
+colors = PackedColorArray(1, 0.28113, 0.362817, 1, 0.911423, 0.782387, 0.463459, 1, 0, 0.777632, 0.613098, 1, 9.62615e-07, 0.659048, 0.974265, 1, 0.600594, 0.563609, 0.930043, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x3vf3"]
+gradient = SubResource("Gradient_00tjw")
+
+[sub_resource type="Gradient" id="Gradient_apopc"]
+offsets = PackedFloat32Array(0, 0.178344, 0.780255, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5htga"]
+gradient = SubResource("Gradient_apopc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5o4e"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 50.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, -100, 0)
+scale_min = 0.1
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_5htga")
+color_initial_ramp = SubResource("GradientTexture1D_x3vf3")
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_fhl08")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -19)
+scale = Vector2(1.73438, 1.73438)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vtle1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.550958, 0.550959, 0.550958, 1)
+scale = Vector2(0.333, 0.333)
 sprite_frames = SubResource("SpriteFrames_x3vf3")
 frame_progress = 0.398181
 offset = Vector2(0.5, -28)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -25)
+position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_l8h54")
 debug_color = Color(0, 0.6, 0.701961, 0.196078)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -9)
+emitting = false
+texture = SubResource("GradientTexture2D_od3ui")
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_p5o4e")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_btcbx")
+
+[node name="Idle(0)" type="Node" parent="StateMachine"]
+script = ExtResource("3_gwnis")
+
+[node name="Move(1)" type="Node" parent="StateMachine"]
+script = ExtResource("4_k53q1")
+
+[node name="Pickup(2)" type="Node" parent="StateMachine"]
+script = ExtResource("5_fhl08")
+
+[node name="Place(3)" type="Node" parent="StateMachine"]
+
+[node name="Node(4)" type="Node" parent="StateMachine"]

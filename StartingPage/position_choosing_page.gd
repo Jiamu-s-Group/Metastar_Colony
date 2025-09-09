@@ -38,8 +38,8 @@ var target_title_text: String = ""
 var current_title_index: int = 0
 var target_description_text: String = ""
 var current_description_index: int = 0
-var target_status_text: String = "" # 1. 新增：状态打字机变量
-var current_status_index: int = 0  # 1. 新增：状态打字机变量
+var target_status_text: String = ""
+var current_status_index: int = 0
 
 # --- 目标颜色变量 ---
 var ocean_target_color: Color = BRIGHT_COLOR
@@ -55,25 +55,26 @@ var background_target_color: Color = DEFAULT_BG_COLOR
 @onready var status_label: Label = $CanvasLayerBack/StatusLabel
 @onready var title_typing_timer: Timer = $TypingTimer
 @onready var description_typing_timer: Timer = $DescriptionTypingTimer
-@onready var status_typing_timer: Timer = $StatusTypingTimer # 2. 获取新的 StatusTypingTimer
+@onready var status_typing_timer: Timer = $StatusTypingTimer
 @onready var typing_sound: AudioStreamPlayer = $AudioStreamPlayer_Typing
 @onready var ocean: Sprite2D = $Planet/Planet_Ocean
 @onready var rocklands: Sprite2D = $Planet/Planet_Rocklands
 @onready var frostcap: Sprite2D = $Planet/Planet_Frostcap
 @onready var pyroforge: Sprite2D = $Planet/Planet_Pyroforge
+# --- 新增: 进度条和其计时器的引用 ---
+@onready var access_progress_bar: ProgressBar = $CanvasLayerBack/AccessProgressBar
+@onready var access_timer: Timer = $AccessTimer
+
 
 func _ready() -> void:
+	# --- 新增: 确保进度条在游戏开始时是隐藏的 ---
+	access_progress_bar.visible = false
 	background_rect.color = DEFAULT_BG_COLOR
 	trigger_text_update(TITLE_TEXT_MAP["default"], DESCRIPTION_TEXT_MAP["default"], STATUS_TEXT_MAP["default"])
 	$AudioStreamPlayer.play()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if is_changing_scene:
-		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		if current_hover_area == "Area2D_Rocklands":
-			is_changing_scene = true
-			Game.change_scene("res://Rocklands/rocklands.tscn")
+# --- 已移除: 不再需要 _unhandled_input 函数来处理鼠标点击 ---
+# func _unhandled_input(event: InputEvent) -> void: ...
 
 func _process(delta: float) -> void:
 	if is_changing_scene:
@@ -99,7 +100,6 @@ func update_targets() -> void:
 		var status = STATUS_TEXT_MAP.get(current_hover_area)
 		trigger_text_update(title, description, status)
 
-	# (颜色目标更新逻辑不变)
 	ocean_target_color = BRIGHT_COLOR
 	rocklands_target_color = BRIGHT_COLOR
 	frostcap_target_color = BRIGHT_COLOR
@@ -129,8 +129,12 @@ func apply_color_transitions(delta: float):
 	frostcap.modulate = frostcap.modulate.lerp(frostcap_target_color, transition_speed * delta)
 	pyroforge.modulate = pyroforge.modulate.lerp(pyroforge_target_color, transition_speed * delta)
 
-# 3. 主触发函数更新，现在会启动所有三个打字机
 func trigger_text_update(title: String, description: String, status: String):
+	# --- 新增: 每当鼠标悬停区域改变时，重置并隐藏进度条 ---
+	access_timer.stop()
+	access_progress_bar.visible = false
+	access_progress_bar.value = 0
+
 	# 启动标题打字机
 	title_typing_timer.stop()
 	target_title_text = title
@@ -150,7 +154,6 @@ func trigger_text_update(title: String, description: String, status: String):
 	target_status_text = status
 	current_status_index = 0
 	status_label.text = ""
-	# 立即设置颜色，这样文字会以正确的颜色被打出来
 	match current_hover_area:
 		"Area2D_Rocklands":
 			status_label.modulate = Color(0.2, 1.0, 0.2)
@@ -177,12 +180,26 @@ func _on_description_typing_timer_timeout():
 	else:
 		description_typing_timer.stop()
 
-# 4. 新增：状态打字机的“引擎”
 func _on_status_typing_timer_timeout():
 	if current_status_index < target_status_text.length():
 		current_status_index += 1
 		status_label.text = target_status_text.substr(0, current_status_index)
-		# 状态文本很短，通常不建议加音效，否则会很吵。如果您需要，可以取消下面一行的注释。
-		# typing_sound.play()
 	else:
 		status_typing_timer.stop()
+		# --- 新增: 当 "ACCESS GRANTED" 文本打印完成后，启动进度条 ---
+		if target_status_text == STATUS_TEXT_MAP["Area2D_Rocklands"]:
+			access_progress_bar.visible = true
+			access_progress_bar.value = 0
+			access_timer.start()
+
+# --- 新增: 处理进度条加载的函数 ---
+func _on_access_timer_timeout():
+	# 每次计时器超时（每0.02秒），就给进度条的值加 1
+	access_progress_bar.value += 5
+
+	# 如果进度条满了，并且我们还没有开始切换场景
+	if access_progress_bar.value >= access_progress_bar.max_value:
+		if not is_changing_scene:
+			is_changing_scene = true
+			access_timer.stop()
+			Game.change_scene("res://Rocklands/rocklands.tscn")
