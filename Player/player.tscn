@@ -7,16 +7,6 @@
 [ext_resource type="Script" uid="uid://s2vvuws3j3iq" path="res://Player/move(1).gd" id="4_k53q1"]
 [ext_resource type="Script" uid="uid://c3qwrl3fvtwro" path="res://Player/pickup(2).gd" id="5_fhl08"]
 
-[sub_resource type="Gradient" id="Gradient_fhl08"]
-offsets = PackedFloat32Array(0, 0.238806, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.350746, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vtle1"]
-gradient = SubResource("Gradient_fhl08")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ntmi"]
 atlas = ExtResource("1_l8h54")
 region = Rect2(64, 0, 64, 64)
@@ -81,6 +71,16 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_fhl08"]
+offsets = PackedFloat32Array(0, 0.0696517, 1)
+colors = PackedColorArray(0.993902, 1, 0.417242, 1, 1, 1, 1, 0.25, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vtle1"]
+gradient = SubResource("Gradient_fhl08")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8h54"]
 radius = 9.0
 
@@ -126,18 +126,17 @@ color_initial_ramp = SubResource("GradientTexture1D_x3vf3")
 motion_mode = 1
 script = ExtResource("1_fhl08")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -19)
-scale = Vector2(1.73438, 1.73438)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_vtle1")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.550958, 0.550959, 0.550958, 1)
 scale = Vector2(0.333, 0.333)
 sprite_frames = SubResource("SpriteFrames_x3vf3")
 frame_progress = 0.398181
 offset = Vector2(0.5, -28)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -18)
+scale = Vector2(6.14453, 6.14453)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vtle1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9)
@@ -166,3 +165,9 @@ script = ExtResource("5_fhl08")
 [node name="Place(3)" type="Node" parent="StateMachine"]
 
 [node name="Node(4)" type="Node" parent="StateMachine"]
+
+[node name="TypingTimer" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true
+
+[connection signal="timeout" from="TypingTimer" to="." method="_on_typing_timer_timeout"]

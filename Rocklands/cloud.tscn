@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bicui41f17ss5"]
+
+[ext_resource type="Shader" uid="uid://dvab4sq8b5yca" path="res://Rocklands/fog.gdshader" id="1_f60mx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dse5u"]
+shader = ExtResource("1_f60mx")
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/OCTAVES = 4
+
+[node name="Cloud" type="Parallax2D"]
+scroll_scale = Vector2(0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_dse5u")
+offset_left = 335.0
+offset_right = 1393.0
+offset_bottom = 800.0
