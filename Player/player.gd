@@ -10,7 +10,7 @@ const PLACE_STATE = 3
 var current_tile_coords: Vector2i = Vector2i.ZERO
 
 # --- 移动参数 ---
-@export var max_speed: float = 90.0
+@export var max_speed: float = 100.0
 @export var acceleration: float = 700.0
 @export var friction: float = 900.0
 
@@ -30,6 +30,7 @@ var current_tile_coords: Vector2i = Vector2i.ZERO
 # --- 改变地图颜色 ---
 @onready var color_environment: ColorRect = $"../ColorRect"
 @onready var terrain_label: Label = $"../CanvasLayer/Terrain"
+@onready var position_label: Label = $"../CanvasLayer/Position"
 
 # --- 打字机效果的 Timer ---
 @onready var typing_timer: Timer = $TypingTimer
@@ -42,6 +43,8 @@ var current_char_index: int = 0
 # --- 高亮方块 ---
 @onready var highlighter: ColorRect = $"../Highlighter"
 
+# --- 检测水 ---
+@onready var character_in_water: bool = false
 
 func _ready():
 	# 初始化目标颜色为当前的背景色，避免游戏开始时颜色闪烁
@@ -57,6 +60,7 @@ func _physics_process(delta):
 	var new_tile_coords: Vector2i = terrain_tilemap.local_to_map(global_position)
 	
 	if new_tile_coords != current_tile_coords:
+		position_label.text = "Position: " + str(current_tile_coords)
 		current_tile_coords = new_tile_coords
 		
 		# --- 更新高亮框位置的逻辑 ---
@@ -72,22 +76,28 @@ func _physics_process(delta):
 		
 		if cell_data:
 			var terrain_name: String
-			match cell_data.type:
-				map_manager.TileType.SAND:
-					terrain_name = "SAND"
-					target_color = Color(2.0, 1.5, 0.0)
-				map_manager.TileType.DIRT:
-					terrain_name = "DIRT"
-					target_color = Color(1.5, 1.0, 0.5)
-				map_manager.TileType.PEAT:
-					terrain_name = "PEAT"
-					target_color = Color(1.0, 1.0, 1.5)
-				map_manager.TileType.STONE:
-					terrain_name = "STONE"
-					target_color = Color(0.9, 1.0, 1.0)
-				map_manager.TileType.HARD_STONE:
-					terrain_name = "HARD_STONE"
-					target_color = Color(0.6, 0.6, 0.7)
+			if cell_data.has_water:
+				character_in_water = true # 在水中
+				terrain_name = "WATER" # 我们可以让地形名称也显示为水
+				target_color = Color(1.5, 1.5, 3.0) # 设置为你想要的蓝色
+			else:
+				character_in_water = false # 不在水中
+				match cell_data.type:
+					map_manager.TileType.SAND:
+						terrain_name = "SAND"
+						target_color = Color(2.0, 1.5, 0.0)
+					map_manager.TileType.DIRT:
+						terrain_name = "DIRT"
+						target_color = Color(1.5, 1.0, 0.5)
+					map_manager.TileType.PEAT:
+						terrain_name = "PEAT"
+						target_color = Color(1.0, 1.0, 1.5)
+					map_manager.TileType.STONE:
+						terrain_name = "STONE"
+						target_color = Color(0.9, 1.0, 1.0)
+					map_manager.TileType.HARD_STONE:
+						terrain_name = "HARD_STONE"
+						target_color = Color(0.6, 0.6, 0.7)
 			
 			if terrain_name != target_terrain_name:
 				target_terrain_name = terrain_name

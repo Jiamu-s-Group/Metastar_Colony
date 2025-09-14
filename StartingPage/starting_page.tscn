@@ -189,7 +189,7 @@ texture = ExtResource("1_f8iag")
 
 [node name="StarFlow" parent="." instance=ExtResource("1_2d31e")]
 modulate = Color(3, 3, 3, 1)
-amount = 30
+amount = 100
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 position = Vector2(983, 512)

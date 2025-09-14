@@ -65,7 +65,7 @@ offset_bottom = 112.0
 color = Color(1, 1, 1, 0.25)
 
 [node name="Cloud" parent="." instance=ExtResource("5_m1njj")]
-scroll_offset = Vector2(51, 3)
+scroll_offset = Vector2(1, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(710, 400)
@@ -80,6 +80,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="MapManager" type="Node" parent="."]
 script = ExtResource("3_mwjxg")
+
+[node name="VerdLayer" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("4_fnbvm")]
 position = Vector2(1020, 323)
@@ -137,4 +139,20 @@ theme_override_colors/font_shadow_color = Color(0.417896, 0.417896, 0.417896, 1)
 theme_override_fonts/font = ExtResource("6_c0asd")
 theme_override_font_sizes/font_size = 25
 text = "Terrain: SAND"
+horizontal_alignment = 1
+
+[node name="Position" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 64.0
+offset_top = 112.0
+offset_right = -1170.0
+offset_bottom = 141.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.689285, 0.689285, 0.689285, 1)
+theme_override_colors/font_shadow_color = Color(0.417896, 0.417896, 0.417896, 1)
+theme_override_fonts/font = ExtResource("6_c0asd")
+theme_override_font_sizes/font_size = 25
+text = "Position: (0, 0)"
 horizontal_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d0pttdscckvy1"]
+[gd_scene load_steps=33 format=3 uid="uid://d0pttdscckvy1"]
 
 [ext_resource type="Script" uid="uid://bakg0ufolllc8" path="res://Player/player.gd" id="1_fhl08"]
 [ext_resource type="Texture2D" uid="uid://t1kem57oam07" path="res://Player/主角-Sheet.png" id="1_l8h54"]
@@ -122,7 +122,45 @@ scale_max = 0.2
 color_ramp = SubResource("GradientTexture1D_5htga")
 color_initial_ramp = SubResource("GradientTexture1D_x3vf3")
 
+[sub_resource type="Gradient" id="Gradient_od3ui"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_00tjw"]
+gradient = SubResource("Gradient_od3ui")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_x3vf3"]
+colors = PackedColorArray(0, 0.551, 8.8, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_apopc"]
+gradient = SubResource("Gradient_x3vf3")
+
+[sub_resource type="Gradient" id="Gradient_5htga"]
+offsets = PackedFloat32Array(0, 0.16242, 0.60828, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p5o4e"]
+gradient = SubResource("Gradient_5htga")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gu6f8"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+velocity_pivot = Vector3(10, 0, 0)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 300, 0)
+scale_min = 0.05
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_p5o4e")
+color_initial_ramp = SubResource("GradientTexture1D_apopc")
+
 [node name="Player" type="CharacterBody2D"]
+z_index = 100
 motion_mode = 1
 script = ExtResource("1_fhl08")
 
@@ -143,12 +181,24 @@ position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_l8h54")
 debug_color = Color(0, 0.6, 0.701961, 0.196078)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="WalkingAffect" type="GPUParticles2D" parent="."]
+modulate = Color(2.5, 2.5, 2.5, 1)
 position = Vector2(0, -9)
 emitting = false
+amount = 3
 texture = SubResource("GradientTexture2D_od3ui")
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_p5o4e")
+
+[node name="WaterAffect" type="GPUParticles2D" parent="."]
+modulate = Color(2.5, 2.5, 2.5, 1)
+position = Vector2(0, 2)
+emitting = false
+amount = 20
+texture = SubResource("GradientTexture2D_00tjw")
+lifetime = 0.4
+explosiveness = 0.2
+process_material = SubResource("ParticleProcessMaterial_gu6f8")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_btcbx")

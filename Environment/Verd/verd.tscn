@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqcide6bfghks"]
+
+[ext_resource type="Texture2D" uid="uid://oqbe34sn7ppc" path="res://Environment/Verd/Verd.png" id="1_c2x54"]
+[ext_resource type="Script" uid="uid://ljhcon4ooqfi" path="res://Environment/Verd/verd.gd" id="1_e222v"]
+
+[node name="Verd" type="Node2D"]
+z_index = 10
+script = ExtResource("1_e222v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Spore1" type="Sprite2D" parent="."]
+position = Vector2(-4, -4)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_c2x54")
+
+[node name="Spore2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3.5, -4)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_c2x54")
+
+[node name="Spore3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4, 3.5)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_c2x54")
+
+[node name="Spore4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3.5, 3.5)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_c2x54")
+
+[node name="Spore5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-0.25, -0.25)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_c2x54")
+
+[node name="Spore6" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-0.25, -4)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_c2x54")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0768358, 0.0768358, 0.0768358, 1)

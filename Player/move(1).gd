@@ -6,14 +6,34 @@ extends Basic_State
 # 所以 get_owner() 是 State_Manager, get_owner().get_owner() 是 Player
 @onready var character: CharacterBody2D = $"../.."
 @onready var state_manager: Node = get_parent()
+@onready var effect: bool = false
+@onready var walking_effect: GPUParticles2D = $"../../WalkingAffect"
+@onready var swimming_effect: GPUParticles2D = $"../../WaterAffect"
 
 func enter():
-	$"../../GPUParticles2D".emitting = true
+	effect = true
 	
 func exit():
-	$"../../GPUParticles2D".emitting = false
+	effect = false
+	walking_effect.emitting = false
+	swimming_effect.emitting = false
 
 func process():
+	#释放粒子特效
+	if effect == true:
+		if character.character_in_water:
+			character.max_speed = 40 # 水中减速
+			walking_effect.emitting = false
+			swimming_effect.emitting = true
+		else:
+			character.max_speed = 100 # 陆上正常速度
+			walking_effect.emitting = true
+			swimming_effect.emitting = false
+	else:
+		walking_effect.emitting = false
+		swimming_effect.emitting = false
+			
+	
 	# 从Godot获取物理帧的delta时间
 	var delta = get_physics_process_delta_time()
 	

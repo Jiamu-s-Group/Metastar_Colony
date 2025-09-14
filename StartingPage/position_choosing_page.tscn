@@ -93,7 +93,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_bmaye")
 
 [node name="StarFlow" parent="." instance=ExtResource("3_ojqnc")]
 modulate = Color(3, 3, 3, 1)
-amount = 5
 
 [node name="Planet" type="Node2D" parent="."]
 position = Vector2(950, 350)
