@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://imf1wu37cgv2"]
+[gd_scene load_steps=15 format=4 uid="uid://imf1wu37cgv2"]
 
 [ext_resource type="Texture2D" uid="uid://d1y0x4o1qhlyx" path="res://Rocklands/TileMap.png" id="1_0nwn4"]
 [ext_resource type="Texture2D" uid="uid://c3k4vxumx1gvl" path="res://Rocklands/Operation_interface.png" id="2_dc1uv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d0pttdscckvy1" path="res://Player/player.tscn" id="4_fnbvm"]
 [ext_resource type="PackedScene" uid="uid://bicui41f17ss5" path="res://Rocklands/cloud.tscn" id="5_m1njj"]
 [ext_resource type="FontFile" uid="uid://bimm6dhdgg15i" path="res://Game/PixelFont.ttf" id="6_c0asd"]
+[ext_resource type="AudioStream" uid="uid://cli0dx272gs7k" path="res://MusicList/EonseedSpace.ogg" id="7_u68nk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dc1uv"]
 texture = ExtResource("1_0nwn4")
@@ -156,3 +157,8 @@ theme_override_fonts/font = ExtResource("6_c0asd")
 theme_override_font_sizes/font_size = 25
 text = "Position: (0, 0)"
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_u68nk")
+volume_db = 7.5
+autoplay = true

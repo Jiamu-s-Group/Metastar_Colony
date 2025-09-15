@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyngqjg8iibx3"]
+[gd_scene load_steps=4 format=3 uid="uid://dyngqjg8iibx3"]
 
 [ext_resource type="Script" uid="uid://bvac86qdcvl3k" path="res://Game/game.gd" id="1_bk3v5"]
+[ext_resource type="Script" uid="uid://cuiwbcvcwvgf5" path="res://Game/SettingsManager.gd" id="2_1r4le"]
 
 [sub_resource type="Environment" id="Environment_4oc8p"]
 background_mode = 3
@@ -20,4 +21,8 @@ environment = SubResource("Environment_4oc8p")
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_right = 1420.0
 offset_bottom = 800.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Setting" type="Node" parent="."]
+script = ExtResource("2_1r4le")

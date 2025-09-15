@@ -215,7 +215,8 @@ func request_spread_from(source_coords: Vector2i, source_type: VerdType, source_
 				# --- 新增的回归路径 ---
 			VerdType.YELLOW, VerdType.BLUE, VerdType.STONE, VerdType.HARD_STONE:
 				# 地形专家有 20% 的几率产生泛用的绿菌后代
-				if roll < 0.20: new_type = VerdType.GREEN
+				if roll < 0.05: new_type = VerdType.AQUATIC
+				if roll < 0.25: new_type = VerdType.GREEN
 	
 			VerdType.AQUATIC:
 				# 水生菌有 30% 几率变异回纯绿菌或黄菌，尤其是在尝试向陆地传播时

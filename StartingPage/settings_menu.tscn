@@ -1,0 +1,407 @@
+[gd_scene load_steps=7 format=3 uid="uid://821q3abxvt7"]
+
+[ext_resource type="FontFile" uid="uid://bimm6dhdgg15i" path="res://Game/PixelFont.ttf" id="1_7gt46"]
+[ext_resource type="Script" uid="uid://ku2p6jelq55d" path="res://StartingPage/SettingsMenu.gd" id="1_p8vtg"]
+[ext_resource type="PackedScene" uid="uid://es3upnweh8n8" path="res://StartingPage/star_flow.tscn" id="2_r6jky"]
+[ext_resource type="Texture2D" uid="uid://c32goyce1ihix" path="res://StartingPage/WhiteButton.png" id="3_vhnv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6jky"]
+bg_color = Color(0.376471, 0.611765, 0.384314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhnv8"]
+bg_color = Color(0, 0.626763, 0.991386, 1)
+
+[node name="SettingsMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p8vtg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 2
+layout_mode = 0
+offset_right = 1420.0
+offset_bottom = 800.0
+color = Color(0.11545, 0.187725, 0.290126, 1)
+
+[node name="TitleLabel" type="Label" parent="ColorRect"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 72.0
+offset_top = 35.0
+offset_right = -941.0
+offset_bottom = 185.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.376471, 0.611765, 0.384314, 1)
+theme_override_colors/font_shadow_color = Color(0.0865023, 0.33163, 0.343139, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 150
+text = "Option"
+horizontal_alignment = 1
+
+[node name="StarFlow" parent="." instance=ExtResource("2_r6jky")]
+process_mode = 2
+modulate = Color(3, 3, 3, 1)
+amount = 8
+
+[node name="TabContainer" type="TabContainer" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.047
+offset_left = 79.0
+offset_top = 218.0
+offset_right = -125.0
+offset_bottom = -245.6
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 100
+current_tab = 0
+
+[node name="Audio" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MasterVolume" type="HBoxContainer" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="TabContainer/Audio/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 80
+text = "  →  Master Volume"
+horizontal_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Audio/MasterVolume/MasterLabel"]
+layout_mode = 2
+anchor_right = 1.975
+anchor_bottom = 1.175
+offset_left = 650.0
+offset_right = -67.15
+offset_bottom = 1.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_r6jky")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_vhnv8")
+min_value = -40.0
+max_value = 5.0
+step = 5.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="TabContainer/Audio/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 80
+text = "  →  Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Audio/MusicVolume/MusicLabel"]
+layout_mode = 2
+anchor_right = 1.975
+anchor_bottom = 1.175
+offset_left = 650.0
+offset_right = 23.7
+offset_bottom = 1.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_r6jky")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_vhnv8")
+min_value = -40.0
+max_value = 5.0
+step = 5.0
+
+[node name="SfxVolume" type="HBoxContainer" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="SfxLabel" type="Label" parent="TabContainer/Audio/SfxVolume"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 80
+text = "  →  Sfx Volume"
+horizontal_alignment = 1
+
+[node name="SfxSlider" type="HSlider" parent="TabContainer/Audio/SfxVolume/SfxLabel"]
+layout_mode = 2
+anchor_right = 1.975
+anchor_bottom = 1.175
+offset_left = 650.0
+offset_right = 169.85
+offset_bottom = 1.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_r6jky")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_vhnv8")
+min_value = -40.0
+max_value = 5.0
+step = 5.0
+
+[node name="Controls" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Up" type="HBoxContainer" parent="TabContainer/Controls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/Up"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 48
+text = "  →  Up"
+horizontal_alignment = 1
+
+[node name="MoveUpButton" type="Button" parent="TabContainer/Controls/Up/Label"]
+offset_left = 380.0
+offset_right = 518.0
+offset_bottom = 58.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_hover_color = Color(0.893323, 0.737259, 0.875091, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.425455, 0.747052, 0.90841, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 50
+text = "W"
+icon = ExtResource("3_vhnv8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Down" type="HBoxContainer" parent="TabContainer/Controls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/Down"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 48
+text = "  →  Down"
+horizontal_alignment = 1
+
+[node name="MoveDownButton" type="Button" parent="TabContainer/Controls/Down/Label"]
+offset_left = 380.0
+offset_right = 518.0
+offset_bottom = 58.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_hover_color = Color(0.893323, 0.737259, 0.875091, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.425455, 0.747052, 0.90841, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 50
+text = "S"
+icon = ExtResource("3_vhnv8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Left" type="HBoxContainer" parent="TabContainer/Controls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/Left"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 48
+text = "  →  Left"
+horizontal_alignment = 1
+
+[node name="MoveLeftButton" type="Button" parent="TabContainer/Controls/Left/Label"]
+offset_left = 380.0
+offset_right = 518.0
+offset_bottom = 58.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_hover_color = Color(0.893323, 0.737259, 0.875091, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.425455, 0.747052, 0.90841, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 50
+text = "A"
+icon = ExtResource("3_vhnv8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Right" type="HBoxContainer" parent="TabContainer/Controls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/Right"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 48
+text = "  →  Right"
+horizontal_alignment = 1
+
+[node name="MoveRightButton" type="Button" parent="TabContainer/Controls/Right/Label"]
+offset_left = 380.0
+offset_right = 518.0
+offset_bottom = 58.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_hover_color = Color(0.893323, 0.737259, 0.875091, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.425455, 0.747052, 0.90841, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 50
+text = "D"
+icon = ExtResource("3_vhnv8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Interaction" type="HBoxContainer" parent="TabContainer/Controls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/Interaction"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 48
+text = "  →  Interaction"
+horizontal_alignment = 1
+
+[node name="InteractionButton" type="Button" parent="TabContainer/Controls/Interaction/Label"]
+offset_left = 380.0
+offset_right = 518.0
+offset_bottom = 58.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_hover_color = Color(0.893323, 0.737259, 0.875091, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.425455, 0.747052, 0.90841, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 50
+text = "E"
+icon = ExtResource("3_vhnv8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Language" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Chinese" type="HBoxContainer" parent="TabContainer/Language"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Language/Chinese"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 80
+text = "  →  Chinese"
+horizontal_alignment = 1
+
+[node name="English" type="HBoxContainer" parent="TabContainer/Language"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Language/English"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 80
+text = "  →  English"
+horizontal_alignment = 1
+
+[node name="Jiamish" type="HBoxContainer" parent="TabContainer/Language"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Language/Jiamish"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.616224, 0.678917, 0.748013, 1)
+theme_override_colors/font_shadow_color = Color(0.0800625, 0.297591, 0.386793, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 80
+text = "  →  Jiamish"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+process_mode = 2
+offset_left = 1018.0
+offset_top = 630.0
+offset_right = 1357.0
+offset_bottom = 738.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_hover_color = Color(0, 0.908161, 0.894145, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 100
+text = "Back
+"
+icon = ExtResource("3_vhnv8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ExitButton" type="Button" parent="."]
+process_mode = 2
+offset_left = 665.0
+offset_top = 630.0
+offset_right = 1004.0
+offset_bottom = 738.0
+theme_override_colors/font_disabled_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/icon_disabled_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/icon_hover_color = Color(1, 0.219608, 0.168627, 1)
+theme_override_colors/icon_focus_color = Color(0.539079, 0.648493, 0.456783, 1)
+theme_override_colors/icon_normal_color = Color(0.376471, 0.611765, 0.392157, 1)
+theme_override_colors/font_outline_color = Color(0.908841, 0.81245, 0.74399, 1)
+theme_override_colors/font_color = Color(0.835294, 0.87451, 0.698039, 1)
+theme_override_colors/font_focus_color = Color(0.93408, 0.93408, 0.93408, 1)
+theme_override_fonts/font = ExtResource("1_7gt46")
+theme_override_font_sizes/font_size = 80
+text = "Exit Game
+"
+icon = ExtResource("3_vhnv8")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

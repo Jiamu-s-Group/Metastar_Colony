@@ -125,25 +125,25 @@ func _consume_nutrient():
 	# 根据菌种类型，计算消耗
 	match verd_type:
 		map_manager.VerdType.GREEN, map_manager.VerdType.PURE_GREEN:
-			cost = 8.0 if current_terrain_type != map_manager.TileType.DIRT and data.has_water else 1.0
+			cost = 8.0 if current_terrain_type != map_manager.TileType.DIRT or data.has_water else 1
 			
 		map_manager.VerdType.YELLOW:
-			cost = 8.0 if current_terrain_type != map_manager.TileType.SAND and data.has_water else 0.2
+			cost = 8.0 if current_terrain_type != map_manager.TileType.SAND or data.has_water else 0.1
 			
 		map_manager.VerdType.BLUE:
-			cost = 8.0 if current_terrain_type != map_manager.TileType.PEAT and data.has_water else 0.2
+			cost = 8.0 if current_terrain_type != map_manager.TileType.PEAT or data.has_water else 0.1
 			
 		map_manager.VerdType.STONE:
-			cost = 8.0 if current_terrain_type != map_manager.TileType.STONE and data.has_water else 0.1
+			cost = 8.0 if current_terrain_type != map_manager.TileType.STONE or data.has_water else 0.0
 			
 		map_manager.VerdType.HARD_STONE:
-			cost = 8.0 if current_terrain_type != map_manager.TileType.HARD_STONE and data.has_water else 0.1
+			cost = 8.0 if current_terrain_type != map_manager.TileType.HARD_STONE or data.has_water else 0.0
 		
 		map_manager.VerdType.AQUATIC:
-			cost = 8.0 if not data.has_water else 0.5 # 在陆地上高消耗，在水里低消耗
+			cost = 8.0 if not data.has_water else 0.1 # 在陆地上高消耗，在水里低消耗
 		
 		map_manager.VerdType.MYCELIAL:
-			cost = 8.0 # 高速行动的高昂代价
+			cost = 7.0 # 高速行动的高昂代价
 		
 		map_manager.VerdType.GAIA:
 			cost = -0.1 # 负消耗，即恢复
@@ -162,7 +162,7 @@ func _consume_nutrient():
 					neighbor_data.nutrient = max(0, neighbor_data.nutrient - 2.0)
 		
 		_: # 默认情况 (灰菌, 晶簇菌等)
-			cost = 2.0
+			cost = 5.0
 
 	data.nutrient = max(0, data.nutrient - cost)
 

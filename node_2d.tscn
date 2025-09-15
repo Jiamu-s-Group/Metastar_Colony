@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b15ggci4ovn42" path="res://area_2d.gd" id="1_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(811, 997)
+size = Vector2(1534.5, 930.5)
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,7 +11,7 @@ size = Vector2(811, 997)
 script = ExtResource("1_wtcfe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(356, 459)
+position = Vector2(717.75, 425.75)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]

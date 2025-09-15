@@ -203,3 +203,7 @@ func _on_access_timer_timeout():
 			is_changing_scene = true
 			access_timer.stop()
 			Game.change_scene("res://Rocklands/rocklands.tscn")
+
+
+func _on_option_button_pressed() -> void:
+	$CanvasLayerFront/SettingsMenu.open_menu()

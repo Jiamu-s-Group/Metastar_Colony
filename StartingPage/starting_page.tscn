@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cx07x28pjhlw1"]
+[gd_scene load_steps=19 format=3 uid="uid://cx07x28pjhlw1"]
 
 [ext_resource type="PackedScene" uid="uid://es3upnweh8n8" path="res://StartingPage/star_flow.tscn" id="1_2d31e"]
 [ext_resource type="Texture2D" uid="uid://d2vf8q4hrtutj" path="res://StartingPage/starting_page_planet.png" id="1_f8iag"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://t1kem57oam07" path="res://Player/主角-Sheet.png" id="5_xmov7"]
 [ext_resource type="Script" uid="uid://das5bneahxwcj" path="res://StartingPage/starting_page_player_animation.gd" id="6_3ltj2"]
 [ext_resource type="AudioStream" uid="uid://cli0dx272gs7k" path="res://MusicList/EonseedSpace.ogg" id="8_tcl5m"]
+[ext_resource type="PackedScene" uid="uid://821q3abxvt7" path="res://StartingPage/settings_menu.tscn" id="9_xla3e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ltj2"]
 atlas = ExtResource("5_xmov7")
@@ -141,12 +142,20 @@ icon = ExtResource("3_5dl2l")
 icon_alignment = 1
 expand_icon = true
 
+[node name="SettingsMenu" parent="CanvasLayerFront" instance=ExtResource("9_xla3e")]
+visible = false
+offset_left = 0.0
+offset_right = 0.0
+
 [node name="CanvasLayerBack" type="CanvasLayer" parent="."]
 layer = -10
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayerBack"]
-offset_right = 1420.0
-offset_bottom = 800.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.054902, 0.101961, 0.168627, 1)
 
 [node name="Label" type="Label" parent="CanvasLayerBack"]
