@@ -219,12 +219,12 @@ func _get_next_tick_time() -> float:
 	if not is_instance_valid(map_manager): return 9999.0 # 安全检查
 	match verd_type:
 		map_manager.VerdType.MYCELIAL:
-			return randf_range(0.03, 0.7) # (3.0, 7.0)
+			return randf_range(1.5, 3.5) # (3.0, 7.0)
 		map_manager.VerdType.CRIMSON:
 			# 猩红菌的捕食周期更长，给其他菌种留下喘息之机
-			return randf_range(0.5, 0.7) # (50.0, 70.0) 
+			return randf_range(25.0, 35.0) # (50.0, 70.0) 
 		_:
-			return randf_range(0.25, 0.7) # (25.0, 35.0)
+			return randf_range(12.5, 17.5) # (25.0, 35.0)
 
 # --- 新增：根据类型设置颜色 ---
 func _update_color():

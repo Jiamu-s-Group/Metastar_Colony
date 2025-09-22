@@ -93,7 +93,7 @@ func _process(delta: float):
 			data.time_until_recovery_tick -= delta
 			if data.time_until_recovery_tick <= 0:
 				data.nutrient = min(data.nutrient + 2, data.max_nutrient) # 恢复2点养分
-				data.time_until_recovery_tick = 0.15 # 重置15秒计时器
+				data.time_until_recovery_tick = 7.5 # 重置15秒计时器
 				# 如果养分已满，则停止恢复
 				if data.nutrient >= data.max_nutrient:
 					data.is_recovering = false

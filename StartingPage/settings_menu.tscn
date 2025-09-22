@@ -169,6 +169,7 @@ text = "  →  Up"
 horizontal_alignment = 1
 
 [node name="MoveUpButton" type="Button" parent="TabContainer/Controls/Up/Label"]
+layout_mode = 0
 offset_left = 380.0
 offset_right = 518.0
 offset_bottom = 58.0
@@ -201,6 +202,7 @@ text = "  →  Down"
 horizontal_alignment = 1
 
 [node name="MoveDownButton" type="Button" parent="TabContainer/Controls/Down/Label"]
+layout_mode = 0
 offset_left = 380.0
 offset_right = 518.0
 offset_bottom = 58.0
@@ -233,6 +235,7 @@ text = "  →  Left"
 horizontal_alignment = 1
 
 [node name="MoveLeftButton" type="Button" parent="TabContainer/Controls/Left/Label"]
+layout_mode = 0
 offset_left = 380.0
 offset_right = 518.0
 offset_bottom = 58.0
@@ -265,6 +268,7 @@ text = "  →  Right"
 horizontal_alignment = 1
 
 [node name="MoveRightButton" type="Button" parent="TabContainer/Controls/Right/Label"]
+layout_mode = 0
 offset_left = 380.0
 offset_right = 518.0
 offset_bottom = 58.0
@@ -297,6 +301,7 @@ text = "  →  Interaction"
 horizontal_alignment = 1
 
 [node name="InteractionButton" type="Button" parent="TabContainer/Controls/Interaction/Label"]
+layout_mode = 0
 offset_left = 380.0
 offset_right = 518.0
 offset_bottom = 58.0
@@ -361,6 +366,7 @@ horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]
 process_mode = 2
+layout_mode = 0
 offset_left = 1018.0
 offset_top = 630.0
 offset_right = 1357.0
@@ -383,6 +389,7 @@ expand_icon = true
 
 [node name="ExitButton" type="Button" parent="."]
 process_mode = 2
+layout_mode = 0
 offset_left = 665.0
 offset_top = 630.0
 offset_right = 1004.0
